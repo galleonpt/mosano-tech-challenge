@@ -35,7 +35,7 @@ class CountriesController {
         }
     }
 
-    public async listAll(request: Request, response: Response) {
+    public async listAll(_request: Request, response: Response) {
         try {
             const countries = await Country.find();
             response.status(200).json(countries);
