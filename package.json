@@ -1,0 +1,35 @@
+{
+  "name": "mosano",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "tsx watch ./src/app.ts",
+    "format:check": "prettier --check ./src --cache",
+    "format:write": "prettier --write ./src --ignore-unknown --cache",
+    "lint:check": "eslint ./src",
+    "lint:write": "eslint --fix ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.5.0",
+    "mongoose": "^9.9.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.9.0",
+    "globals": "^17.11.0",
+    "jiti": "^2.7.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.12",
+    "typescript-eslint": "^8.67.0"
+  }
+}
