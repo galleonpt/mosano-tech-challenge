@@ -1,11 +1,12 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CountriesProvider } from "./contexts/CountriesContext";
 import { VisitorsProvider } from "./contexts/VisitorsContext";
 import { MainLayout } from "./layouts/MainLayout";
-import { Home } from "./pages/Home";
-import { Revisited } from "./pages/Revisited";
+import { Home } from "./pages/home";
+import { Revisited } from "./pages/revisited";
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                     </VisitorsProvider>
                 </CountriesProvider>
             </AuthProvider>
+            <ToastContainer />
         </BrowserRouter>
     );
 }

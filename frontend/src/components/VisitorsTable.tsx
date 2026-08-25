@@ -1,7 +1,7 @@
-import type { TableColumnsType } from "antd";
-import { Table } from "antd";
 import type { FC } from "react";
 import type { Visitor } from "../contexts/VisitorsContext";
+import type { TableColumn } from "./table";
+import { Table } from "./table";
 
 interface VisitorsTableProps {
     visitors: Visitor[];
@@ -14,29 +14,26 @@ export const VisitorsTable: FC<VisitorsTableProps> = ({
     onRowClick,
     showCreatedAt = false,
 }) => {
-    const columns: TableColumnsType<Visitor> = [
+    const columns: TableColumn<Visitor>[] = [
         {
-            title: "Name",
-            dataIndex: "name",
             key: "name",
+            title: "Name",
             width: "25%",
         },
         {
-            title: "Surname",
-            dataIndex: "surname",
             key: "surname",
+            title: "Surname",
             width: "25%",
         },
         {
-            title: "Country",
-            dataIndex: ["country", "name"],
             key: "country",
+            title: "Country",
             width: "25%",
+            render: (value: any) => value?.name || "-",
         },
         {
-            title: "Birthday",
-            dataIndex: "birthday",
             key: "birthday",
+            title: "Birthday",
             width: "25%",
             render: (date: string) => {
                 const d = new Date(date);
@@ -51,9 +48,8 @@ export const VisitorsTable: FC<VisitorsTableProps> = ({
 
     if (showCreatedAt) {
         columns.push({
-            title: "Created At",
-            dataIndex: "created_at",
             key: "created_at",
+            title: "Created At",
             width: "20%",
             render: (date: string) => {
                 const d = new Date(date);
@@ -63,15 +59,11 @@ export const VisitorsTable: FC<VisitorsTableProps> = ({
     }
 
     return (
-        <Table<Visitor>
+        <Table
             columns={columns}
-            dataSource={visitors}
+            data={visitors}
             rowKey="_id"
-            pagination={false}
-            onRow={(record) => ({
-                onClick: () => onRowClick?.(record),
-                style: { cursor: onRowClick ? "pointer" : "default" },
-            })}
+            onRowClick={onRowClick}
         />
     );
 };

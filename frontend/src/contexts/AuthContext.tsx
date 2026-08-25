@@ -1,4 +1,3 @@
-import { message } from "antd";
 import {
     createContext,
     type FC,
@@ -7,6 +6,7 @@ import {
     useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const STORAGE_AUTH_KEY = "isLoggedIn";
 
@@ -40,13 +40,13 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     const login = () => {
         localStorage.setItem(STORAGE_AUTH_KEY, "true");
         setIsLoggedIn(true);
-        message.success("You have successfully logged in.");
+        toast.success("You have successfully logged in.");
     };
 
     const logout = () => {
         localStorage.setItem(STORAGE_AUTH_KEY, "false");
         setIsLoggedIn(false);
-        message.success("You have successfully logged out.");
+        toast.success("You have successfully logged out.");
         navigate("/");
     };
 

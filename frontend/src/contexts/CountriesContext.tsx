@@ -1,10 +1,10 @@
-import { message } from "antd";
 import {
     createContext,
     type FC,
     type PropsWithChildren,
     useState,
 } from "react";
+import { toast } from "react-toastify";
 import { API_URL } from "../api/constants.api";
 
 export interface Country {
@@ -33,7 +33,7 @@ export const CountriesProvider: FC<PropsWithChildren> = ({ children }) => {
             const data = await response.json();
             setCountries(data);
         } catch (error) {
-            message.error("Failed to fetch countries");
+            toast.error("Failed to fetch countries");
         } finally {
             setLoading(false);
         }

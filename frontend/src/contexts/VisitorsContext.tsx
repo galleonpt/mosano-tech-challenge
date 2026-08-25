@@ -1,11 +1,11 @@
-import { message } from "antd";
-import type { Dayjs } from "dayjs";
+import { type Dayjs } from "dayjs";
 import {
     createContext,
     type FC,
     type PropsWithChildren,
     useState,
 } from "react";
+import { toast } from "react-toastify";
 import { API_KEY, API_URL } from "../api/constants.api";
 import { useAuth } from "../hooks/useAuth";
 
@@ -51,7 +51,7 @@ export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
             const data = await response.json();
             setVisitors(data);
         } catch (error) {
-            message.error("Failed to fetch visitors");
+            toast.error("Failed to fetch visitors");
         } finally {
             setLoading(false);
         }
