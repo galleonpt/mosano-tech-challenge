@@ -1,32 +1,14 @@
-import { type FC, type PropsWithChildren, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { message } from "antd";
+import { type FC, type PropsWithChildren } from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
-    const navigate = useNavigate();
-    const [showError, setShowError] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const { isLoggedIn } = useAuth();
 
-    useEffect(() => {
-        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-        if (!isLoggedIn) {
-            setShowError(true);
-            navigate("/");
-        }
-
-        setIsLoading(false);
-    }, [navigate]);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (showError) {
-        return (
-            <div style={{ padding: "20px", color: "red" }}>
-                <p>You must be logged in to access this page</p>
-            </div>
-        );
+    if (!isLoggedIn) {
+        message.error("You must be logged in to access this page");
+        return <Navigate to="/" replace />;
     }
 
     return <>{children}</>;
