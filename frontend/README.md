@@ -1,75 +1,104 @@
-# React + TypeScript + Vite
+# Mosano Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technologies Used
 
-Currently, two official plugins are available:
+### Core Framework
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** - JavaScript library for building user interfaces
+- **TypeScript** - Type-safe JavaScript superset
+- **Vite** - Next-generation frontend build tool
+- **React Router 7** - Client-side routing and navigation
 
-## React Compiler
+### Features & Libraries
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **i18next** - Internationalization (i18n) framework for multi-language support
+- **React Hook Form** - Efficient form state management
+- **React Toastify** - Toast notifications
+- **Day.js** - Lightweight date manipulation library
 
-## Expanding the ESLint configuration
+### Development Tools
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **TypeScript 6** - Static type checking
+- **ESLint 10** - Code linting and quality
+- **Vite** - Fast development server with HMR (Hot Module Replacement)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
 
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+src/
+├── api/                      # API constants
+├── assets/                   # Static assets (images, styles, etc.)
+├── components/               # Reusable React components
+│   ├── birthdayGreeting/     # Birthday greeting component
+│   ├── button/               # Button component
+│   ├── datePicker/           # Date picker component
+│   ├── header/               # Header component
+│   ├── input/                # Input field component
+│   ├── navLink/              # Navigation link component
+│   ├── requiredSymbol/       # Required field indicator
+│   ├── select/               # Select dropdown component
+│   ├── spinner/              # Loading spinner component
+│   ├── table/                # Data table component
+│   └── MainLayout.tsx        # Main layout wrapper
+├── contexts/                 # React Context for global state
+│   ├── AuthContext.tsx       # Authentication state
+│   ├── CountriesContext.tsx  # Countries data
+│   ├── LanguageContext.tsx   # Language/localization state
+│   └── VisitorsContext.tsx   # Visitors data management
+├── hooks/                    # Custom React hooks
+├── pages/                    # Page components
+│   ├── home/                 # Home/dashboard page
+│   └── revisited/            # Revisited visitors page
+├── utils/                    # Utility functions
+├── App.tsx                   # Main application component
+└── main.tsx                  # Application entry point
 ```
+
+## How to Install and Use
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone <repository-url>
+   cd mosano/frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables** (if needed)
+
+   ```bash
+   cp .env.example .env
+   ```
+
+### Development (you need to have the backend running)
+
+Start the development server with hot module replacement (HMR):
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## Available Scripts
+
+- `npm run dev` - Start development server with HMR
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint to check code quality
+- `npm run preview` - Preview production build locally
+
+## Multi-Language Support
+
+The application uses i18next for internationalization. Language files are located in the public directory and can be extended to support additional languages.
