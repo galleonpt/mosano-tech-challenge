@@ -1,0 +1,13 @@
+{
+    "no_data": "No data",
+    "errors": {
+        "must_be_logged_id": "You must be logged in to access this page"
+    },
+    "header": {
+        "title": "Tech challenge - José rodrigues"
+    },
+    "birthday_greeting": {
+        "message_one": "Hello {{name}} from {{country}}. On {{day}} of {{month}} you will be {{nextAge}} year old!",
+        "message_other": "Hello {{name}} from {{country}}. On {{day}} of {{month}} you will be {{nextAge}} years old!"
+    }
+}

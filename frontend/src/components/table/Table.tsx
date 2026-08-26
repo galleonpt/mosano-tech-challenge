@@ -1,4 +1,6 @@
-import type { FC, ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { Spinner } from "../spinner";
 import styles from "./Table.module.css";
 
 export interface TableColumn<T> {
@@ -14,7 +16,6 @@ interface TableProps<T extends Record<string, any>> {
     rowKey: keyof T;
     onRowClick?: (record: T, index: number) => void;
     loading?: boolean;
-    emptyMessage?: string;
 }
 
 export const Table: FC<TableProps<any>> = ({
@@ -23,14 +24,15 @@ export const Table: FC<TableProps<any>> = ({
     rowKey,
     onRowClick,
     loading = false,
-    emptyMessage = "No data available",
 }) => {
+    const { t } = useTranslation();
+
     if (loading) {
-        return <div className={styles.loadingContainer}>Loading...</div>;
+        return <Spinner />;
     }
 
     if (data.length === 0) {
-        return <div className={styles.emptyContainer}>{emptyMessage}</div>;
+        return <div className={styles.emptyContainer}>{t("no_data")}</div>;
     }
 
     return (

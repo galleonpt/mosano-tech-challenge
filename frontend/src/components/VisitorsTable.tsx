@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { useTranslation } from "react-i18next";
 import type { Visitor } from "../contexts/VisitorsContext";
 import type { TableColumn } from "./table";
 import { Table } from "./table";
@@ -14,26 +15,27 @@ export const VisitorsTable: FC<VisitorsTableProps> = ({
     onRowClick,
     showCreatedAt = false,
 }) => {
+    const { t } = useTranslation(undefined, { keyPrefix: "content" });
     const columns: TableColumn<Visitor>[] = [
         {
             key: "name",
-            title: "Name",
+            title: t("name"),
             width: "25%",
         },
         {
             key: "surname",
-            title: "Surname",
+            title: t("surname"),
             width: "25%",
         },
         {
             key: "country",
-            title: "Country",
+            title: t("country"),
             width: "25%",
             render: (value: any) => value?.name || "-",
         },
         {
             key: "birthday",
-            title: "Birthday",
+            title: t("birthday"),
             width: "25%",
             render: (date: string) => {
                 const d = new Date(date);
@@ -49,7 +51,7 @@ export const VisitorsTable: FC<VisitorsTableProps> = ({
     if (showCreatedAt) {
         columns.push({
             key: "created_at",
-            title: "Created At",
+            title: t("created_at"),
             width: "20%",
             render: (date: string) => {
                 const d = new Date(date);

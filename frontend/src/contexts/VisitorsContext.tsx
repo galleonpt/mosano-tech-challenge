@@ -6,6 +6,7 @@ import {
     useEffect,
     useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { API_KEY, API_URL } from "../api/constants.api";
@@ -39,6 +40,7 @@ export const VisitorsContext = createContext<VisitorsContextType | undefined>(
 );
 
 export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
+    const { t } = useTranslation(undefined, { keyPrefix: "errors" });
     const { isLoggedIn } = useAuth();
     const location = useLocation();
     const [visitors, setVisitors] = useState<Visitor[]>([]);
@@ -58,7 +60,7 @@ export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
             const data = await response.json();
             setVisitors(data);
         } catch (error) {
-            toast.error("Failed to fetch visitors");
+            toast.error(t("fetch_visitors"));
         } finally {
             setLoading(false);
         }
@@ -85,10 +87,14 @@ export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
                 body: JSON.stringify(payload),
             });
 
+            if (!response.ok) {
+                throw new Error("Error adding visitor");
+            }
+
             const newVisitor = await response.json();
             setVisitors((prev) => [...prev, newVisitor]);
         } catch (err) {
-            throw err;
+            toast.error(t("add_visitor"));
         }
     };
 

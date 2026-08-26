@@ -1,16 +1,18 @@
 import dayjs from "dayjs";
+import "dayjs/locale/pt";
+import "dayjs/locale/en";
 import type { Visitor } from "../contexts/VisitorsContext";
 
 export interface BirthdayInfo {
     nextAge: number;
     day: number;
-    month: number;
+    month: string;
 }
 
 export function getNextBirthdayInfo(visitor: Visitor): BirthdayInfo {
     const birthday = dayjs(visitor.birthday);
     const birthdayDay = birthday.get("date");
-    const birthdayMonth = birthday.get("month") + 1;
+    const birthdayMonth = birthday.format("MMMM");
     const birthdayYear = birthday.get("year");
 
     const currentYear = dayjs().get("year");

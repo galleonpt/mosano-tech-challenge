@@ -5,6 +5,7 @@ import {
     useEffect,
     useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -21,6 +22,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
+    const { t } = useTranslation(undefined, { keyPrefix: "toasts" });
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(() => {
         return localStorage.getItem(STORAGE_AUTH_KEY) === "true";
@@ -28,7 +30,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 
     useEffect(() => {
         const handleStorageChange = (e: StorageEvent) => {
-            if (e.key === "isLoggedIn") {
+            if (e.key === STORAGE_AUTH_KEY) {
                 setIsLoggedIn(e.newValue === "true");
             }
         };
@@ -40,13 +42,13 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     const login = () => {
         localStorage.setItem(STORAGE_AUTH_KEY, "true");
         setIsLoggedIn(true);
-        toast.success("You have successfully logged in.");
+        toast.success(t("login"));
     };
 
     const logout = () => {
         localStorage.setItem(STORAGE_AUTH_KEY, "false");
         setIsLoggedIn(false);
-        toast.success("You have successfully logged out.");
+        toast.success(t("logout"));
         navigate("/");
     };
 

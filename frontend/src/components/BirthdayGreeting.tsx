@@ -1,12 +1,24 @@
+import dayjs from "dayjs";
 import type { FC } from "react";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import type { Visitor } from "../contexts/VisitorsContext";
+import { useLanguage } from "../hooks/useLanguage";
 import { getNextBirthdayInfo } from "../utils/birthday";
+import { getFullName } from "../utils/visitor";
 
 interface BirthdayGreetingProps {
     visitor: Visitor | null;
 }
 
 export const BirthdayGreeting: FC<BirthdayGreetingProps> = ({ visitor }) => {
+    const { t } = useTranslation(undefined, { keyPrefix: "birthday_greeting" });
+    const { locale } = useLanguage();
+
+    useEffect(() => {
+        dayjs.locale(locale);
+    }, [locale]);
+
     if (!visitor) {
         return null;
     }
@@ -24,7 +36,14 @@ export const BirthdayGreeting: FC<BirthdayGreetingProps> = ({ visitor }) => {
                 color: "#0065a0",
             }}
         >
-            {`Dia: ${day}, mes: ${month}, proxima idade: ${nextAge}`}
+            {t("message", {
+                name: getFullName(visitor),
+                country: visitor.country.name,
+                day,
+                month,
+                nextAge,
+                count: nextAge,
+            })}
         </div>
     );
 };

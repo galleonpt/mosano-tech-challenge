@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { useEffect, useState, type FC } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { BirthdayGreeting } from "../../components/BirthdayGreeting";
 import { VisitorsTable } from "../../components/VisitorsTable";
 import { Button } from "../../components/button";
@@ -22,6 +23,7 @@ interface FormValues {
 }
 
 export const Home: FC = () => {
+    const { t } = useTranslation();
     const { isLoggedIn } = useAuth();
     const {
         visitors,
@@ -65,7 +67,7 @@ export const Home: FC = () => {
             const selectedCountry = countries.find(
                 (c) => c._id === values.country_id,
             );
-            if (!selectedCountry) throw new Error("Country not found");
+            if (!selectedCountry) return;
 
             const newVisitor = {
                 name: values.name,
@@ -75,10 +77,8 @@ export const Home: FC = () => {
             };
 
             await addVisitor(newVisitor, values.country_id);
-            setSelectedVisitor(newVisitor as Visitor);
+            await fetchVisitors();
             reset();
-        } catch (error) {
-            console.error("Error adding visitor");
         } finally {
             setLoading(false);
         }
@@ -101,25 +101,25 @@ export const Home: FC = () => {
                         className={styles.form}
                     >
                         <Input
-                            label="Name"
+                            label={t("content.name")}
                             required
                             {...register("name", {
-                                required: "Please enter your name",
+                                required: t("errors.name"),
                             })}
                             error={errors.name?.message}
                         />
 
                         <Input
-                            label="Surname"
+                            label={t("content.surname")}
                             required
                             {...register("surname", {
-                                required: "Please enter your surname",
+                                required: t("errors.surname"),
                             })}
                             error={errors.surname?.message}
                         />
 
                         <Select
-                            label="Country"
+                            label={t("content.country")}
                             required
                             options={[
                                 ...countries.map((country) => ({
@@ -128,23 +128,23 @@ export const Home: FC = () => {
                                 })),
                             ]}
                             {...register("country_id", {
-                                required: "Please select a country",
+                                required: t("errors.country"),
                             })}
                             error={errors.country_id?.message}
                         />
 
                         <DatePicker
-                            label="Birthday"
+                            label={t("content.birthday")}
                             required
                             {...register("birthday", {
-                                required: "Please select your birthday",
+                                required: t("errors.birthday"),
                             })}
                             error={errors.birthday?.message}
                         />
 
                         <Button
                             type="submit"
-                            label="Save"
+                            label={t("actions.save")}
                             disabled={!isLoggedIn || loading}
                         />
                     </form>

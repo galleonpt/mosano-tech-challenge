@@ -1,0 +1,42 @@
+{
+    "no_data": "Sem dados",
+    "errors": {
+        "must_be_logged_id": "Tem de estar autenticado para aceder a esta página",
+        "fetch_countries": "Erro ao procurar paises",
+        "fetch_visitors": "Erro ao procurar visitantes",
+        "add_visitor": "Erro ao adicionar visitante",
+        "name": "Nome é obrigatório",
+        "surname": "Apelido é obrigatório",
+        "country": "Pais é obrigatório",
+        "birthday": "Aniversário é obrigatório"
+    },
+    "toasts": {
+        "login": "Entrou com sucesso",
+        "logout": "Saiu com sucesso"
+    },
+    "header": {
+        "title": "Desafio técnico - José rodrigues",
+        "home": "Home",
+        "revisited": "Histórico",
+        "login": "Entrar",
+        "logout": "Sair",
+        "supported_languages": {
+            "portuguese": "Português",
+            "english": "English"
+        }
+    },
+    "content": {
+        "name": "Nome",
+        "surname": "Apelido",
+        "country": "Pais",
+        "birthday": "Aniversário",
+        "created_at": "Data de criação"
+    },
+    "actions": {
+        "save": "Guardar"
+    },
+    "birthday_greeting": {
+        "message_one": "Olá {{name}} de {{country}}. Em {{day}} de {{month}} terás {{nextAge}} ano!",
+        "message_other": "Olá {{name}} de {{country}}. Em {{day}} de {{month}} terás {{nextAge}} anos!"
+    }
+}

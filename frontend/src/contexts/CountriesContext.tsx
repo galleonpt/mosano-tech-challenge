@@ -4,6 +4,7 @@ import {
     type PropsWithChildren,
     useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { API_URL } from "../api/constants.api";
 
@@ -23,6 +24,7 @@ export const CountriesContext = createContext<CountriesContextType | undefined>(
 );
 
 export const CountriesProvider: FC<PropsWithChildren> = ({ children }) => {
+    const { t } = useTranslation(undefined, { keyPrefix: "errors" });
     const [countries, setCountries] = useState<Country[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -33,7 +35,7 @@ export const CountriesProvider: FC<PropsWithChildren> = ({ children }) => {
             const data = await response.json();
             setCountries(data);
         } catch (error) {
-            toast.error("Failed to fetch countries");
+            toast.error(t("fetch_countries"));
         } finally {
             setLoading(false);
         }
