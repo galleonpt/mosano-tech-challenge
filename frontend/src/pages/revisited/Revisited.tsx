@@ -1,5 +1,5 @@
 import { type FC, useEffect } from "react";
-import { BirthdayGreeting } from "../../components/BirthdayGreeting";
+import { BirthdayGreeting } from "../../components/birthdayGreeting";
 import { Spinner } from "../../components/spinner";
 import { VisitorsTable } from "../../components/VisitorsTable";
 import { type Visitor } from "../../contexts/VisitorsContext";
