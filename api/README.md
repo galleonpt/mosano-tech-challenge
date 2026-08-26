@@ -77,6 +77,15 @@ docker compose down && docker compose up --build
 
 The API will be available at `http://localhost:3333`
 
+## Testing
+
+```bash
+# Run all tests
+npm test
+```
+
+The project includes comprehensive test coverage for middleware, services, and API endpoints.
+
 ## API Documentation
 
 All endpoints follow RESTful conventions.
