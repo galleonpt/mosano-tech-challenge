@@ -1,10 +1,39 @@
 {
     "no_data": "No data",
     "errors": {
-        "must_be_logged_id": "You must be logged in to access this page"
+        "must_be_logged_id": "You must be logged in to access this page",
+        "fetch_countries": "Error fetching countries",
+        "fetch_visitors": "Error fetching visitors",
+        "add_visitor": "Error adding visitor",
+        "name": "Name is required",
+        "surname": "Surname is required",
+        "country": "Country is required",
+        "birthday": "Birthday is required"
+    },
+    "toasts": {
+        "login": "Logged in successfully",
+        "logout": "Logged out successfully"
     },
     "header": {
-        "title": "Tech challenge - José rodrigues"
+        "title": "Tech Challenge - José Rodrigues",
+        "home": "Home",
+        "revisited": "Revisited",
+        "login": "Login",
+        "logout": "Logout",
+        "supported_languages": {
+            "portuguese": "Português",
+            "english": "English"
+        }
+    },
+    "content": {
+        "name": "Name",
+        "surname": "Surname",
+        "country": "Country",
+        "birthday": "Birthday",
+        "created_at": "Creation Date"
+    },
+    "actions": {
+        "save": "Save"
     },
     "birthday_greeting": {
         "message_one": "Hello {{name}} from {{country}}. On {{day}} of {{month}} you will be {{nextAge}} year old!",
