@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from "react";
+import styles from "./Table.module.css";
 
 export interface TableColumn<T> {
     key: keyof T;
@@ -25,20 +26,21 @@ export const Table: FC<TableProps<any>> = ({
     emptyMessage = "No data available",
 }) => {
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className={styles.loadingContainer}>Loading...</div>;
     }
 
     if (data.length === 0) {
-        return <div>{emptyMessage}</div>;
+        return <div className={styles.emptyContainer}>{emptyMessage}</div>;
     }
 
     return (
-        <table>
-            <thead>
+        <table className={styles.table}>
+            <thead className={styles.thead}>
                 <tr>
                     {columns.map((column) => (
                         <th
                             key={String(column.key)}
+                            className={styles.th}
                             style={{ width: column.width }}
                         >
                             {column.title}
@@ -46,16 +48,17 @@ export const Table: FC<TableProps<any>> = ({
                     ))}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tbody}>
                 {data.map((row, index) => (
                     <tr
-                        key={String(row[rowKey])}
+                        key={row[rowKey]}
                         onClick={() => onRowClick?.(row, index)}
-                        style={{ cursor: onRowClick ? "pointer" : "default" }}
+                        data-clickable={Boolean(onRowClick)}
                     >
                         {columns.map((column) => (
                             <td
                                 key={`${String(row[rowKey])}-${String(column.key)}`}
+                                className={styles.td}
                             >
                                 {column.render
                                     ? column.render(row[column.key], row, index)

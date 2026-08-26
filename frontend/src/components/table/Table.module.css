@@ -1,0 +1,58 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+    border: 1px solid #f0f0f0;
+}
+
+.thead {
+    background-color: #fafafa;
+}
+
+.th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fafafa;
+}
+
+.tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.td {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.tbody tr[data-clickable="true"] {
+    cursor: pointer;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.emptyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: rgba(0, 0, 0, 0.45);
+}
