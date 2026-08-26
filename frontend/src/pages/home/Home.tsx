@@ -140,6 +140,7 @@ export const Home: FC = () => {
                                 required: t("errors.birthday"),
                             })}
                             error={errors.birthday?.message}
+                            max={dayjs().format("YYYY-MM-DD")}
                         />
 
                         <Button
