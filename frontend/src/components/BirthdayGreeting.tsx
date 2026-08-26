@@ -17,11 +17,11 @@ export const BirthdayGreeting: FC<BirthdayGreetingProps> = ({ visitor }) => {
         <div
             style={{
                 padding: "16px",
-                backgroundColor: "#f0f9ff",
-                border: "1px solid #bae6fd",
+                backgroundColor: "#d9eaf5",
+                border: "1px solid #9bdcff",
                 borderRadius: "4px",
                 marginTop: "16px",
-                color: "#0c4a6e",
+                color: "#0065a0",
             }}
         >
             {`Dia: ${day}, mes: ${month}, proxima idade: ${nextAge}`}

@@ -3,8 +3,10 @@ import {
     createContext,
     type FC,
     type PropsWithChildren,
+    useEffect,
     useState,
 } from "react";
+import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { API_KEY, API_URL } from "../api/constants.api";
 import { useAuth } from "../hooks/useAuth";
@@ -38,11 +40,16 @@ export const VisitorsContext = createContext<VisitorsContextType | undefined>(
 
 export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
     const { isLoggedIn } = useAuth();
+    const location = useLocation();
     const [visitors, setVisitors] = useState<Visitor[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedVisitor, setSelectedVisitor] = useState<Visitor | null>(
         null,
     );
+
+    useEffect(() => {
+        setSelectedVisitor(null);
+    }, [location.pathname]);
 
     const fetchVisitors = async () => {
         try {
