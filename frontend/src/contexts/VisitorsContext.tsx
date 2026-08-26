@@ -95,6 +95,7 @@ export const VisitorsProvider: FC<PropsWithChildren> = ({ children }) => {
             setVisitors((prev) => [...prev, newVisitor]);
         } catch (err) {
             toast.error(t("add_visitor"));
+            throw err;
         }
     };
 

@@ -65,7 +65,7 @@ export const Home: FC = () => {
         try {
             setLoading(true);
             const selectedCountry = countries.find(
-                (c) => c._id === values.country_id,
+                (country) => country._id === values.country_id,
             );
             if (!selectedCountry) return;
 
